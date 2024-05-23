@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { Hero } from '../hero';
 import { HeroService } from '../hero.service';
-import { NgFor } from '@angular/common';
+import { CommonModule, NgFor } from '@angular/common';
+import { RouterLink, RouterModule } from '@angular/router';
+//import { HeroesComponent } from '../heroes/heroes.component';
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [NgFor],
+  imports:[NgFor, RouterLink],
   templateUrl: './dashboard.component.html',
   styleUrls: [ './dashboard.component.css' ]
 })
@@ -20,7 +22,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getHeroes(): void {
-    this.heroService.getHeroes()
-      .subscribe(heroes => this.heroes = heroes.slice(1, 5));
+    this.heroService.getAllHeroes()
+      .then(heroes => this.heroes = heroes.slice(1, 5));
   }
 }

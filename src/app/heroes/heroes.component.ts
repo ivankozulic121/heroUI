@@ -21,18 +21,20 @@ import { CommonEngine } from '@angular/ssr';
 })
 export class HeroesComponent implements OnInit {
     heroes: Hero[] = [];
-    route: ActivatedRoute = inject(ActivatedRoute)
-    constructor( private heroService: HeroService, private messageService: MessageService ){}
+    route: ActivatedRoute = inject(ActivatedRoute);
+    //heroService: HeroService = inject(HeroService);
+    constructor(private heroService: HeroService ){
+      
+      }
+    
 
-    selectedHero?: Hero
-    onSelect(hero:Hero): void{
-      this.selectedHero=hero;
-      this.messageService.add('HeroesComponent: Selected hero id=' + hero.id)
-    }
+   
     
     getHeroes(): void {
-     this.heroService.getHeroes().
-     subscribe(heroes => this.heroes = heroes)
+     this.heroService.getAllHeroes().
+     then((heroes: Hero[]) => {
+      this.heroes = heroes;
+     })
     }
 
     //ovo opet procitaj, mada je i vjerovatno nebitno

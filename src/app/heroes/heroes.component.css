@@ -63,4 +63,7 @@
   
   .heroes .name {
     align-self: center;
+    display: inline-block;
+    color: #405061;
+    background-color: white;
   }
